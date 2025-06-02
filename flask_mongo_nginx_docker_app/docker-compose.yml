@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "80:80" # Map host port 80 to Nginx port 80 in the container
+    volumes:
+      - .:/app # Mount current directory to /app in container for development
+    depends_on:
+      - mongo
+    environment:
+      MONGO_URI: mongodb://mongo:27017/user_login_db
+      FLASK_ENV: development # Change to production as needed
+    # The command will be handled by a startup script or directly in Dockerfile CMD
+    # For now, we'll ensure Nginx and Gunicorn are started.
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017" # Expose MongoDB port to host (optional, for debugging)
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  mongo_data:
