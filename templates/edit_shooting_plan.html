@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Shooting Plan{% endblock %}
+
+{% block content %}
+  <h1>Edit Shooting Plan</h1>
+  <form method="post">
+    <input type="text" name="name" value="{{ shooting_plan.name }}" required>
+    <input type="text" name="schedule" value="{{ shooting_plan.schedule }}" required>
+    <input type="text" name="team_assignments" value="{{ shooting_plan.team_assignments }}" required>
+    <input type="text" name="equipment_logistics" value="{{ shooting_plan.equipment_logistics }}" required>
+    <button type="submit">Update Shooting Plan</button>
+  </form>
+{% endblock %}

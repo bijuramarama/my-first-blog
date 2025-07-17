@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Studio Workflow Management{% endblock %}
+
+{% block content %}
+  <h1>Studio Workflow</h1>
+  <form action="{{ url_for('add_studio_workflow') }}" method="post">
+    <input type="text" name="footage_name" placeholder="Footage Name" required>
+    <button type="submit">Add to Workflow</button>
+  </form>
+  <ul>
+    {% for item in studio_workflow %}
+      <li>
+        {{ item.footage_name }} - {{ item.status }} - {{ item.editing_progress }} - {{ item.approval }}
+        <a href="{{ url_for('edit_studio_workflow', studio_workflow_id=item._id) }}">Edit</a>
+        <a href="{{ url_for('delete_studio_workflow', studio_workflow_id=item._id) }}">Delete</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

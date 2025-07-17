@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Footage Management{% endblock %}
+
+{% block content %}
+  <h1>Footage</h1>
+  <form action="{{ url_for('add_footage') }}" method="post">
+    <input type="text" name="name" placeholder="Footage Name" required>
+    <input type="text" name="location" placeholder="Location" required>
+    <input type="text" name="camera" placeholder="Camera" required>
+    <input type="text" name="team" placeholder="Team" required>
+    <button type="submit">Add Footage</button>
+  </form>
+  <ul>
+    {% for item in footage %}
+      <li>
+        {{ item.name }} - {{ item.location }} - {{ item.camera }} - {{ item.team }}
+        <a href="{{ url_for('edit_footage', footage_id=item._id) }}">Edit</a>
+        <a href="{{ url_for('delete_footage', footage_id=item._id) }}">Delete</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

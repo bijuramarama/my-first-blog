@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Location{% endblock %}
+
+{% block content %}
+  <h1>Edit Location</h1>
+  <form method="post">
+    <input type="text" name="name" value="{{ location.name }}" required>
+    <input type="text" name="country" value="{{ location.country }}" required>
+    <input type="text" name="visa_requirements" value="{{ location.visa_requirements }}" required>
+    <input type="text" name="permits" value="{{ location.permits }}" required>
+    <button type="submit">Update Location</button>
+  </form>
+{% endblock %}

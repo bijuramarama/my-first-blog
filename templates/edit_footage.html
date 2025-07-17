@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Footage{% endblock %}
+
+{% block content %}
+  <h1>Edit Footage</h1>
+  <form method="post">
+    <input type="text" name="name" value="{{ footage_item.name }}" required>
+    <input type="text" name="location" value="{{ footage_item.location }}" required>
+    <input type="text" name="camera" value="{{ footage_item.camera }}" required>
+    <input type="text" name="team" value="{{ footage_item.team }}" required>
+    <button type="submit">Update Footage</button>
+  </form>
+{% endblock %}

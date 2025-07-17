@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Studio Workflow{% endblock %}
+
+{% block content %}
+  <h1>Edit Studio Workflow</h1>
+  <form method="post">
+    <input type="text" name="footage_name" value="{{ studio_workflow_item.footage_name }}" required>
+    <select name="status">
+      <option value="arrived" {% if studio_workflow_item.status == 'arrived' %}selected{% endif %}>Arrived</option>
+      <option value="in_progress" {% if studio_workflow_item.status == 'in_progress' %}selected{% endif %}>In Progress</option>
+      <option value="completed" {% if studio_workflow_item.status == 'completed' %}selected{% endif %}>Completed</option>
+    </select>
+    <select name="editing_progress">
+        <option value="not_started" {% if studio_workflow_item.editing_progress == 'not_started' %}selected{% endif %}>Not Started</option>
+        <option value="editing" {% if studio_workflow_item.editing_progress == 'editing' %}selected{% endif %}>Editing</option>
+        <option value="review" {% if studio_workflow_item.editing_progress == 'review' %}selected{% endif %}>Review</option>
+        <option value="done" {% if studio_workflow_item.editing_progress == 'done' %}selected{% endif %}>Done</option>
+    </select>
+    <select name="approval">
+        <option value="pending" {% if studio_workflow_item.approval == 'pending' %}selected{% endif %}>Pending</option>
+        <option value="approved" {% if studio_workflow_item.approval == 'approved' %}selected{% endif %}>Approved</option>
+        <option value="rejected" {% if studio_workflow_item.approval == 'rejected' %}selected{% endif %}>Rejected</option>
+    </select>
+    <button type="submit">Update Workflow</button>
+  </form>
+{% endblock %}

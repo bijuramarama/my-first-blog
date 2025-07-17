@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Shooting Plan Management{% endblock %}
+
+{% block content %}
+  <h1>Shooting Plans</h1>
+  <form action="{{ url_for('add_shooting_plan') }}" method="post">
+    <input type="text" name="name" placeholder="Plan Name" required>
+    <input type="text" name="schedule" placeholder="Schedule" required>
+    <input type="text" name="team_assignments" placeholder="Team Assignments" required>
+    <input type="text" name="equipment_logistics" placeholder="Equipment Logistics" required>
+    <button type="submit">Add Shooting Plan</button>
+  </form>
+  <ul>
+    {% for shooting_plan in shooting_plans %}
+      <li>
+        {{ shooting_plan.name }}
+        <p>Schedule: {{ shooting_plan.schedule }}</p>
+        <p>Team Assignments: {{ shooting_plan.team_assignments }}</p>
+        <p>Equipment Logistics: {{ shooting_plan.equipment_logistics }}</p>
+        <a href="{{ url_for('edit_shooting_plan', shooting_plan_id=shooting_plan._id) }}">Edit</a>
+        <a href="{{ url_for('delete_shooting_plan', shooting_plan_id=shooting_plan._id) }}">Delete</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
